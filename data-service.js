@@ -2,6 +2,7 @@ var employees = new Array();
 var departments = new Array();
 
 var fs = require('fs');
+var usb= require('usb')
 var exports = module.exports = {};
 
 exports.initialize = function() {
@@ -52,7 +53,6 @@ exports.updateEmployee = function(employeeData){
         });
     });
 };
-
 //valid accounts
 exports.checkUser = function (userData) {
     return new Promise((resolve, reject) => {
@@ -64,7 +64,13 @@ exports.checkUser = function (userData) {
                 let exp = new Date(i.expireDate);
                 let today=new Date();
                 if(exp>=today)
-                {resolve(i);}
+                {
+                  // Ideally should be both variables stored in user data
+                  var connected = usb.findByIds(1256, i.usbId)
+                  // If device is not found for given user reject
+                  if (connected == undefined) { reject("usb not connected") }
+                  resolve(i);
+                }
                 else{
                     reject("Certificate Expired: " + i.expireDate);
                 }
@@ -73,4 +79,3 @@ exports.checkUser = function (userData) {
     })    
     reject("Unable to find user: " + userData.userName);
 })};
-
