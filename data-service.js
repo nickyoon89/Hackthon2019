@@ -90,7 +90,7 @@ exports.checkUser = function (userData) {
                         reject(city + " is Not Athorized Area");                      
                     }
                     else{
-                        reject("Device: " + i.deviceId+" is Not registered");
+                        reject("Device: " + computerName+" is Not registered");
                     } 
                 }
                 else{
