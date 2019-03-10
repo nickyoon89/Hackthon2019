@@ -2,6 +2,7 @@ var employees = new Array();
 var departments = new Array();
 
 var fs = require('fs');
+var usb= require('usb')
 var exports = module.exports = {};
 
 exports.initialize = function() {
@@ -63,12 +64,17 @@ exports.checkUser = function (userData) {
         } else {
             if (userData.password != i.password)
                 reject("Incorrect password: " + userData.userName);
-            else
+            else {
+                // Extra check to see if USB is connected using hardcoded id
+                // Ideally should be both variables stored in user data
+                var connected = usb.findByIds(1256, i.usbId)
+                // If device is not found for given user reject
+                if (connected == undefined) { reject("usb not connected") }
+                // if everything passes
                 resolve(i);
+            }
         }
     }
-        else{reject("Unable to find user: " + userData.userName); }
-    
     })
     .catch(() => reject("Unable to find user: " + userData.userName));
     
