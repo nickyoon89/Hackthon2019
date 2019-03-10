@@ -34,6 +34,14 @@ exports.getAllEmployees = function(){
     });
 };
 
+exports.getAllLocation = function(){
+    return new Promise((resolve, reject) => {
+        resolve(curLocation, cities);
+        if(curLocation.length == 0)
+        reject("no results returned");
+    });
+};
+
 exports.getDepartments = function(){
     return new Promise((resolve, reject) => {
         resolve(departments);

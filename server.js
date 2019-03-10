@@ -49,6 +49,12 @@ app.get('/login', (req, res) => {
     res.render("employees",{});
 })
 
+app.get('/curloc', (req, res) => { 
+    dataService.getAllLocation()
+        .then((data) => res.render("curlocation",{curLocation:data}))
+        .catch(() => res.render("curlocation",{message: "no results"}))
+})
+
 app.get("/employees/add", (req, res) => {
     //res.sendFile(path.join(__dirname+"/views/addEmployee.html"));
     res.render("addEmployee");
