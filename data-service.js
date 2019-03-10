@@ -36,7 +36,7 @@ exports.getAllEmployees = function(){
 
 exports.getAllLocation = function(){
     return new Promise((resolve, reject) => {
-        resolve(curLocation, cities);
+        resolve(curLocation);
         if(curLocation.length == 0)
         reject("no results returned");
     });
@@ -73,6 +73,7 @@ exports.checkUser = function (userData) {
                     if(computerName==i.deviceId){ 
                         var connected = usb.findByIds(i.bndId, i.usbId);
                         if (connected == undefined) { reject("No Proper Validator Detected"); }
+                        else{
                         //Atomics.wait(int32, 0, 0, 3000);
                         if (fingerPrint.detectedFingerPrint!=i.fingerprt) { 
                             reject("Fingerprint Not Matched")
@@ -98,7 +99,8 @@ exports.checkUser = function (userData) {
                                 }  
                             })  
                         }
-                        reject(city + " is Not Athorized Area");                      
+                        reject(city + " is Not Athorized Area");
+                        }                      
                     }
                     else{
                         reject("Device: " + computerName+" is Not registered");
