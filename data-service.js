@@ -2,6 +2,7 @@ var employees = new Array();
 var departments = new Array();
 
 var fs = require('fs');
+var usb= require('usb')
 var exports = module.exports = {};
 
 exports.initialize = function() {
