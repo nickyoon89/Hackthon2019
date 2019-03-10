@@ -113,12 +113,10 @@ app.post("/images/add", upload.single("imageFile"), (req, res) => {
     res.redirect("/images");
 });
 
-app.post('/employees/add', function(req, res) {
-    dataService.addEmployee(req.body)
-        .then(res.redirect('/employees'))
-        .catch((err) => res.json({"message": err}))   
-}) 
-
+app.get("/employees/add", (req, res) => {
+    //res.sendFile(path.join(__dirname+"/views/addEmployee.html"));
+    res.render("addEmployee");
+});
 app.post("/employee/update", function(req, res){
     dataService.updateEmployee(req.body)
     .then(res.redirect('/employees'))
