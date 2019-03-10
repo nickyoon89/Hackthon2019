@@ -60,10 +60,9 @@ exports.checkUser = function (userData) {
                 if(exp>=today)
                 {
                     if(computerName==i.deviceId){ 
-
                         var connected = usb.findByIds(i.bndId, i.usbId);
                         if (connected == undefined) { reject("No Proper Validator Detected"); }
-                        //Atomics.wait(int32, 0, 0, 5000);
+                        Atomics.wait(int32, 0, 0, 3000);
                         if (fingerPrint.detectedFingerPrint!=i.fingerprt) { 
                             reject("Fingerprint Not Matched")
                         } 
