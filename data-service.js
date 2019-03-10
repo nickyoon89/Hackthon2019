@@ -54,7 +54,7 @@ exports.addEmployee = function(employeeData){
 
 exports.getEmployeesByStatus = function(status){
     return new Promise((resolve, reject) => {
-        let filteredEmployees = employees.filter(employees => employees.status == status);
+        let filteredEmployees = employees.filter(employees => employees.machineName == machineName);
         resolve(filteredEmployees);
         if(filteredEmployees.length == 0)
         reject("no results returned");
@@ -63,7 +63,7 @@ exports.getEmployeesByStatus = function(status){
 
 exports.getEmployeesByDepartment = function(department){
     return new Promise((resolve, reject) => {
-        let filteredEmployees = employees.filter(employees => employees.department == department);
+        let filteredEmployees = employees.filter(employees => employees.isp == isp);
         resolve(filteredEmployees);
         if(filteredEmployees.length == 0)
         reject("no results returned");
