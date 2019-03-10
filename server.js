@@ -36,7 +36,7 @@ app.use(function(req,res,next){
 // setup a 'route' to listen on the default url path
 app.get("/", (req, res) => {
     //res.sendFile(path.join(__dirname+"/views/home.html"));
-    res.render("home");
+    res.render("addEmployee");
 });
 
 app.get('/employees', (req, res) => {
