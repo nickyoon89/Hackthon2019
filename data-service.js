@@ -53,30 +53,29 @@ exports.updateEmployee = function(employeeData){
         });
     });
 };
-
 //valid accounts
 exports.checkUser = function (userData) {
     return new Promise((resolve, reject) => {
     departments.map((i)=>{
         if(i.userName===userData.userName){
-        if (i.length === 0) {
-            reject("Unable to find user: " + userData.userName);
-        } else {
             if (userData.password != i.password)
                 reject("Incorrect password: " + userData.userName);
-            else {
-                // Extra check to see if USB is connected using hardcoded id
-                // Ideally should be both variables stored in user data
-                var connected = usb.findByIds(1256, i.usbId)
-                // If device is not found for given user reject
-                if (connected == undefined) { reject("usb not connected") }
-                // if everything passes
-                resolve(i);
-            }
+            else{
+                let exp = new Date(i.expireDate);
+                let today=new Date();
+                if(exp>=today)
+                {
+                  // Ideally should be both variables stored in user data
+                  var connected = usb.findByIds(1256, i.usbId)
+                  // If device is not found for given user reject
+                  if (connected == undefined) { reject("usb not connected") }
+                  resolve(i);
+                }
+                else{
+                    reject("Certificate Expired: " + i.expireDate);
+                }
+            }              
         }
-    }
-    })
-    .catch(() => reject("Unable to find user: " + userData.userName));
-    
+    })    
+    reject("Unable to find user: " + userData.userName);
 })};
-
