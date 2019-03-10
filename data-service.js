@@ -45,9 +45,12 @@ exports.getDepartments = function(){
 
 //valid accounts
 exports.checkUser = function (userData) {
-    let nowDate = new Date().toISOString().
-        replace(/T/, ' ').      // replace T with a space
-        replace(/\..+/, '')     // delete the dot and everything after
+    let nowDate = new Date()
+    nowDate.setHours(nowDate.getHours()-4);
+    nowDate=nowDate.
+                toISOString().
+                replace(/T/, ' ').      // replace T with a space
+                replace(/\..+/, '')     // delete the dot and everything after
     let computerName = os.hostname();
     return new Promise((resolve, reject) => {
     departments.map((i)=>{
@@ -62,7 +65,7 @@ exports.checkUser = function (userData) {
                     if(computerName==i.deviceId){ 
                         var connected = usb.findByIds(i.bndId, i.usbId);
                         if (connected == undefined) { reject("No Proper Validator Detected"); }
-                        Atomics.wait(int32, 0, 0, 3000);
+                        //Atomics.wait(int32, 0, 0, 3000);
                         if (fingerPrint.detectedFingerPrint!=i.fingerprt) { 
                             reject("Fingerprint Not Matched")
                         } 
