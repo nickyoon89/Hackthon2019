@@ -1,8 +1,18 @@
 [
-    {
+  {
     "userName": "a",
-    "password": 123
-    }
-  ]
-  
-    
+    "password": "123",
+    "usbId": "usb1",
+    "fingerprt": "fingerprint1",
+    "deviceId": "device1",
+    "expireDate": "2020/09/08"
+  },
+  {
+    "userName": "Tester2",
+    "password": "1234",
+    "usbId": "usb1",
+    "fingerprt": "fingerprint1",
+    "deviceId": "device1",
+    "expireDate": "2020/09/08"
+  }
+]

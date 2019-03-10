@@ -16,7 +16,6 @@ var multer = require("multer");
 var bodyParser = require("body-parser");
 var app = express();
 var path = require('path');
-var fs = require('fs');
 var exphbs = require('express-handlebars');
 var dataService = require('./data-service.js');
 
@@ -26,7 +25,6 @@ const storage = multer.diskStorage({
       cb(null, Date.now() + path.extname(file.originalname));
     }
 });
-var upload = multer({ storage: storage });
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -62,42 +60,27 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-app.get('/employee/:employeeNum', (req, res) => {
-    dataService.getEmployeesByNum(req.params.employeeNum)
-    .then((data) => res.render("employee",{employee:data}))
-    .catch(()=>{res.render("employee",{message:"no results"})
-})
-});
-
 app.get('/employees', (req, res) => {
-    if(req.query.status) {
-        dataService.getEmployeesByStatus(req.query.status)
-            .then((data) => res.render("employees",{employees:data}))
-            .catch(() => res.render("employees",{message: "no results"}))
-    }else if(req.query.manager){
-        dataService.getEmployeesByManager(req.query.manager)
-            .then((data) => res.render("employees",{employees:data}))
-            .catch(() => res.render("employees",{message: "no results"}))
-    }else if(req.query.department){
-        dataService.getEmployeesByDepartment(req.query.department)
-            .then((data) => res.render("employees",{employees:data}))
-            .catch(() => res.render("employees",{message: "no results"}))
-    }else{
-        dataService.getAllEmployees()
-            .then((data) => res.render("employees",{employees:data}))
-            .catch(() => res.render("employees",{message: "no results"}))
-    }
+    dataService.getAllEmployees()
+        .then((data) => res.render("employees",{employees:data}))
+        .catch(() => res.render("employees",{message: "no results"}))
 });
-
-/*app.get('/managers', (req, res) => {
-    dataService.getManagers()
-        .then((data) => res.json(data))
-        .catch((err) => res.render({"message": err}))
-});*/
 
 app.get('/login', (req, res) => { 
     res.render("employees",{});
 })
+
+app.get("/employees/add", (req, res) => {
+    //res.sendFile(path.join(__dirname+"/views/addEmployee.html"));
+    res.render("addEmployee");
+});
+
+app.get('/departments', (req, res) => {
+    dataService.getDepartments()
+        .then((data) => res.render("departments",{departments:data}))
+        .catch(() => res.render("departments",{"message": "no results"}))
+})
+//POST
 
 //add validation for username and password
 app.post("/login", function (req, res) {
@@ -107,26 +90,6 @@ app.post("/login", function (req, res) {
     .catch((err) => res.render("addEmployee",{errorMessage: err,userName:req.body.userName}))
 });
 
-app.get("/images", (req, res) => {
-    fs.readdir("./public/images/uploaded", function(err, imageFile){
-        //res.json(imageFile);
-        res.render("images",  { data: imageFile, title: "Images" });
-    })
-
-})
-
-app.post("/images/add", upload.single("imageFile"), (req, res) => {
-    res.redirect("/images");
-});
-
-app.get("/employees/add", (req, res) => {
-    //res.sendFile(path.join(__dirname+"/views/addEmployee.html"));
-    res.render("addEmployee");
-});
-app.post("/employee/update", function(req, res){
-    dataService.updateEmployee(req.body)
-    .then(res.redirect('/employees'))
-});
 
 app.get('*', (req, res) => {
     //res.send("Page Not Found");
