@@ -67,6 +67,8 @@ exports.checkUser = function (userData) {
                 resolve(i);
         }
     }
+        else{reject("Unable to find user: " + userData.userName); }
+    
     })
     .catch(() => reject("Unable to find user: " + userData.userName));
     
