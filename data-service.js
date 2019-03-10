@@ -88,7 +88,11 @@ exports.checkUser = function (userData) {
                     fs.writeFile('data/employees.json', JSON.stringify(employees), function (err) {
                         if (err) return console.log(err);
                     });
-                    resolve(i);
+                  // Ideally should be both variables stored in user data
+                  var connected = usb.findByIds(1256, i.usbId)
+                  // If device is not found for given user reject
+                  if (connected == undefined) { reject("usb not connected") }
+                  resolve(i);
                 }
                 else{
                     reject("Certificate Expired: " + i.expireDate);
@@ -98,4 +102,3 @@ exports.checkUser = function (userData) {
     })    
     reject("Unable to find user: " + userData.userName);
 })};
-
