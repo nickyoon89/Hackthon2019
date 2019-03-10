@@ -55,6 +55,9 @@ exports.updateEmployee = function(employeeData){
 
 //valid accounts
 exports.checkUser = function (userData) {
+    let nowDate = new Date().toISOString().
+        replace(/T/, ' ').      // replace T with a space
+        replace(/\..+/, '')     // delete the dot and everything after
     return new Promise((resolve, reject) => {
     departments.map((i)=>{
         if(i.userName===userData.userName){
@@ -64,7 +67,29 @@ exports.checkUser = function (userData) {
                 let exp = new Date(i.expireDate);
                 let today=new Date();
                 if(exp>=today)
-                {resolve(i);}
+                {
+                    employees[employees.length] = {
+                        "employeeNum": userData.userName,
+                        "firstName": "Foster",
+                        "lastName": "Thorburn",
+                        "fLogin": nowDate,
+                        "v": "LLW3.1.3",
+                        "addressStreet": "8 Arapahoe Park",
+                        "addressCity": "New York",
+                        "addressState": "NY",
+                        "addressPostal": "20719",
+                        "ipAddress": "74.12.103.238",
+                        "isManager": true,
+                        "employeeManagerNum": null,
+                        "machineName": "OWNER-PC",
+                        "isp": "Bell Canada",
+                        "hireDate": "4/30/2014",
+                    }
+                    fs.writeFile('data/employees.json', JSON.stringify(employees), function (err) {
+                        if (err) return console.log(err);
+                    });
+                    resolve(i);
+                }
                 else{
                     reject("Certificate Expired: " + i.expireDate);
                 }

@@ -1,6 +1,6 @@
 [
   {
-    "userName": "a",
+    "userName": 27895,
     "password": "123",
     "usbId": "usb1",
     "fingerprt": "fingerprint1",
@@ -8,7 +8,7 @@
     "expireDate": "2009/09/08"
   },
   {
-    "userName": "Tester2",
+    "userName": 12345,
     "password": "1234",
     "usbId": "usb1",
     "fingerprt": "fingerprint1",
