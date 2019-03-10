@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <h2>Employees</h2>
+        <h2>Log</h2>
         <hr />
         <div class="table-responsive">
             <table class="table">
@@ -18,11 +18,11 @@
                     {{#each employees}}
                     <tr>
                         <td>{{this.employeeNum}}</td>
-                        <td><a href="/employee/{{this.employeeNum}}">{{this.firstName}}&nbsp;{{this.lastName}}</a></td>
-                        <td><a href="/employee/{{this.fLogin}}">{{this.fLogin}}</a></td>
-                        <td><a href="/employee/{{this.v}}">{{this.v}}</a></td>
-                        <td><a href="/employee/{{this.ipAddress}}">{{this.ipAddress}}</a></td>
-                        <td><a href="/employee/{{this.machineName}}">{{this.machineName}}</a></td>
+                        <td>{{this.firstName}}&nbsp;{{this.lastName}}</td>
+                        <td>{{this.fLogin}}</td>
+                        <td>{{this.v}}</td>
+                        <td>{{this.ipAddress}}</td>
+                        <td>{{this.machineName}}</td>
                         <td>{{this.isp}}</td>
                         <td>{{this.addressStreet}} {{this.addressCity}} {{this.addressState}} {{this.addressPostal}}
                         </td>
