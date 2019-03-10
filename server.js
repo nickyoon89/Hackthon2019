@@ -62,13 +62,6 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-app.get('/employee/:employeeNum', (req, res) => {
-    dataService.getEmployeesByNum(req.params.employeeNum)
-    .then((data) => res.render("employee",{employee:data}))
-    .catch(()=>{res.render("employee",{message:"no results"})
-})
-});
-
 app.get('/employees', (req, res) => {
     if(req.query.status) {
         dataService.getEmployeesByStatus(req.query.status)
@@ -101,26 +94,16 @@ app.get('/login', (req, res) => {
         .catch(() => res.render("departments",{"message": "no results"}))
 })
 
-app.get("/images", (req, res) => {
-    fs.readdir("./public/images/uploaded", function(err, imageFile){
-        //res.json(imageFile);
-        res.render("images",  { data: imageFile, title: "Images" });
-    })
-
-})
-
-app.post("/images/add", upload.single("imageFile"), (req, res) => {
-    res.redirect("/images");
-});
-
 app.get("/employees/add", (req, res) => {
     //res.sendFile(path.join(__dirname+"/views/addEmployee.html"));
     res.render("addEmployee");
 });
-app.post("/employee/update", function(req, res){
-    dataService.updateEmployee(req.body)
-    .then(res.redirect('/employees'))
-});
+
+app.get('/departments', (req, res) => {
+    dataService.getDepartments()
+        .then((data) => res.render("departments",{departments:data}))
+        .catch(() => res.render("departments",{"message": "no results"}))
+})
 
 app.get('*', (req, res) => {
     //res.send("Page Not Found");
