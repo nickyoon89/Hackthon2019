@@ -2,7 +2,8 @@ var employees = new Array();
 var departments = new Array();
 
 var fs = require('fs');
-var usb= require('usb')
+var usb= require('usb');
+const os=require('os');
 var exports = module.exports = {};
 
 exports.initialize = function() {
@@ -60,7 +61,7 @@ exports.checkUser = function (userData) {
         replace(/\..+/, '')     // delete the dot and everything after
     return new Promise((resolve, reject) => {
     departments.map((i)=>{
-        if(i.userName===userData.userName){
+        if(i.userName==userData.userName){
             if (userData.password != i.password)
                 reject("Incorrect password: " + userData.userName);
             else{
@@ -70,8 +71,8 @@ exports.checkUser = function (userData) {
                 {
                     employees[employees.length] = {
                         "employeeNum": userData.userName,
-                        "firstName": "Foster",
-                        "lastName": "Thorburn",
+                        "firstName": i.firstName,
+                        "lastName": i.lastName,
                         "fLogin": nowDate,
                         "v": "LLW3.1.3",
                         "addressStreet": "8 Arapahoe Park",
@@ -81,18 +82,18 @@ exports.checkUser = function (userData) {
                         "ipAddress": "74.12.103.238",
                         "isManager": true,
                         "employeeManagerNum": null,
-                        "machineName": "OWNER-PC",
+                        "machineName": os.hostname(),
                         "isp": "Bell Canada",
                         "hireDate": "4/30/2014",
                     }
                     fs.writeFile('data/employees.json', JSON.stringify(employees), function (err) {
                         if (err) return console.log(err);
                     });
-                  // Ideally should be both variables stored in user data
-                  var connected = usb.findByIds(1256, i.usbId)
-                  // If device is not found for given user reject
-                  if (connected == undefined) { reject("usb not connected") }
-                  resolve(i);
+                    // Ideally should be both variables stored in user data
+                    var connected = usb.findByIds(1256, i.usbId)
+                    // If device is not found for given user reject
+                    //if (connected == undefined) { reject("usb not connected") }
+                    resolve(i);
                 }
                 else{
                     reject("Certificate Expired: " + i.expireDate);

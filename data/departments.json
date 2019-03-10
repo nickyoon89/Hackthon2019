@@ -2,6 +2,8 @@
   {
     "userName": 27895,
     "password": "123",
+    "firstName": "Foster",
+    "lastName": "Thorburn",
     "usbId": "usb1",
     "fingerprt": "fingerprint1",
     "deviceId": "device1",
@@ -10,6 +12,8 @@
   {
     "userName": 12345,
     "password": "1234",
+    "firstName": "Nick",
+    "lastName": "Yoon",
     "usbId": "26720",
     "fingerprt": "fingerprint1",
     "deviceId": "device1",
