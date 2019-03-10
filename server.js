@@ -96,10 +96,16 @@ app.get('/employees', (req, res) => {
 });*/
 
 app.get('/login', (req, res) => { 
-    dataService.getDepartments()
-        .then((data) => res.render("departments",{departments:data}))
-        .catch(() => res.render("departments",{"message": "no results"}))
+    res.render("employees",{});
 })
+
+//add validation for username and password
+app.post("/login", function (req, res) {
+    dataService.checkUser(req.body).then(() => {
+        res.redirect('/employees');
+        })
+    .catch((err) => res.render("addEmployee",{errorMessage: err,userName:req.body.userName}))
+});
 
 app.get("/images", (req, res) => {
     fs.readdir("./public/images/uploaded", function(err, imageFile){

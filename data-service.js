@@ -101,3 +101,23 @@ exports.updateEmployee = function(employeeData){
         });
     });
 };
+
+//valid accounts
+exports.checkUser = function (userData) {
+    return new Promise((resolve, reject) => {
+    departments.map((i)=>{
+        if(i.userName===userData.userName){
+        if (i.length === 0) {
+            reject("Unable to find user: " + userData.userName);
+        } else {
+            if (userData.password != i.password)
+                reject("Incorrect password: " + userData.userName);
+            else
+                resolve(i);
+        }
+    }
+    })
+    .catch(() => reject("Unable to find user: " + userData.userName));
+    
+})};
+
