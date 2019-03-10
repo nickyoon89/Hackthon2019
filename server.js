@@ -1,30 +1,10 @@
-/*********************************************************************************
-*  WEB322 Assignment 4
-*  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  
-*  No part of this assignment has been copied manually or electronically from any other source
-*  (including web sites) or distributed to other students.
-* 
-*  Name: _Jihyun Yoon_ Student ID: _124558172_ Date: _07/06/2018_
-*
-*  Online (Heroku) URL: https://nameless-atoll-63740.herokuapp.com/
-*
-********************************************************************************/
-
 var HTTP_PORT = process.env.PORT || 8080;
 var express = require("express");
-var multer = require("multer");
 var bodyParser = require("body-parser");
 var app = express();
 var path = require('path');
 var exphbs = require('express-handlebars');
 var dataService = require('./data-service.js');
-
-const storage = multer.diskStorage({
-    destination: "./public/images/uploaded/",
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + path.extname(file.originalname));
-    }
-});
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
