@@ -2,7 +2,6 @@ var HTTP_PORT = process.env.PORT || 8080;
 var express = require("express");
 var bodyParser = require("body-parser");
 var app = express();
-var path = require('path');
 var exphbs = require('express-handlebars');
 var dataService = require('./data-service.js');
 
@@ -85,3 +84,7 @@ dataService.initialize()
 .catch(() => {
     console.log("There was an error initializing");
 })
+
+setInterval(function(){
+    dataService.initialize()
+}, 1000)

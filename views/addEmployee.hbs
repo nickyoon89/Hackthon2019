@@ -4,21 +4,23 @@
 
 <body>
     <div class="container login-form">
-    <h2>Log In</h2>
+    <h2 align="center">Log In</h2>
     <hr />
   {{#if errorMessage}}
-    <div class="alert alert-danger"><strong>Error:</strong>{{errorMessage}}</div>
+    <div class="alert alert-danger"><strong>Error: </strong>{{errorMessage}}</div>
   {{/if}}
-    <form method="POST" action="/login">
-        <div class="form-group">
-            <label for="username" class="sr-only">User Name</label>
-            <input class="form-control" name="userName" type="text" placeholder="User Name" value="" required/>
-        </div>
-        <div class="form-group">
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input class="form-control" name="password" type="password" placeholder="Password" required/>
-        </div>
-    <button type="submit" class="btn btn-success pull-right">Login</button>
-  </form>
+    <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;text-align: center;">
+      <form method="POST" action="/login" style="width:500px;">
+            <div class="form-group">
+                <label for="username" class="sr-only">User Name</label>
+                <input class="form-control" name="userName" type="text" placeholder="User Name" value="" required/>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input class="form-control" name="password" type="password" placeholder="Password" required/>
+            </div>
+        <button type="submit" class="btn btn-success pull-right">Login</button>
+      </form>
+    </div>
     </div>
 </body>

@@ -1,0 +1,56 @@
+[
+    {
+        "employeeNum": 27895,
+        "firstName": "Foster",
+        "lastName": "Thorburn",
+        "fLogin": "2019-02-17 10:30:45",
+        "addressCity": "New York",
+        "addressState": "NY",
+        "machineName": "OWNER-PC"
+    },
+    {
+        "employeeNum": 27895,
+        "firstName": "Foster",
+        "lastName": "Thorburn",
+        "fLogin": "2019-02-17 13:30:45",
+        "addressCity": "New York",
+        "addressState": "NY",
+        "machineName": "OWNER-PC"
+    },
+    {
+        "employeeNum": 27895,
+        "firstName": "Foster",
+        "lastName": "Thorburn",
+        "fLogin": "2019-02-17 16:30:45",
+        "addressCity": "New York",
+        "addressState": "NY",
+        "machineName": "OWNER-PC"
+    },
+    {
+        "employeeNum": 45524,
+        "firstName": "Gary",
+        "lastName": "Singh",
+        "fLogin": "2019-02-21 11:02:53",
+        "addressCity": "Toronto",
+        "addressState": "ON",
+        "machineName": "06eeefa40b0bc4ce"
+    },
+    {
+        "employeeNum": 35793,
+        "firstName": "Kiranjot",
+        "lastName": "Rai",
+        "fLogin": "2019-02-22 10:15:32",
+        "addressCity": "Toronto",
+        "addressState": "ON",
+        "machineName": "OWNER-PC"
+    },
+    {
+        "employeeNum": 27895,
+        "firstName": "Foster",
+        "lastName": "Thorburn",
+        "fLogin": "2019-02-27 10:30:45",
+        "addressCity": "New York",
+        "addressState": "NY",
+        "machineName": "OWNER-PC"
+    }
+]

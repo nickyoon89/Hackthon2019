@@ -1,17 +1,14 @@
 <div class="row">
     <div class="col-md-12">
-        <h2>Log</h2>
+        <h2 align="center">Log History</h2>
         <hr />
         <div class="table-responsive">
             <table class="table">
                 <thead>
                     <th>Cust&nbsp;CD</th>
                     <th>User&nbsp;Name</th>
-                    <th>First&nbsp;Login</th>
-                    <th>Version</th>
-                    <th>IP&nbsp;Address</th>
+                    <th>Checked&nbsp;Time</th>
                     <th>Machine&nbsp;Name</th>
-                    <th>ISP</th>
                     <th>Location</th>
                 </thead>
                 <tbody>
@@ -20,11 +17,8 @@
                         <td>{{this.employeeNum}}</td>
                         <td>{{this.firstName}}&nbsp;{{this.lastName}}</td>
                         <td>{{this.fLogin}}</td>
-                        <td>{{this.v}}</td>
-                        <td>{{this.ipAddress}}</td>
                         <td>{{this.machineName}}</td>
-                        <td>{{this.isp}}</td>
-                        <td>{{this.addressCity}} {{this.addressState}} {{this.addressPostal}}
+                        <td>{{this.addressCity}} {{this.addressState}}
                         </td>
                     </tr>
                     {{/each}}

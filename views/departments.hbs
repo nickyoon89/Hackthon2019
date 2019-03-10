@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-12">
-		<h2>User Information</h2>
+		<h2 align="center">User Information</h2>
 		<hr/>
 		<div class="table-responsive">
             <table class="table">
@@ -12,6 +12,7 @@
                     <th>FingerPrint</th>
                     <th>Device&nbsp;ID</th>
                     <th>Expire&nbsp;Date</th>
+                    <th>Location</th>
                 </thead>
                 <tbody>
                 {{#each departments}}
@@ -19,10 +20,11 @@
                     <td>{{this.userName}}</td>
                     <td>{{this.password}}</td>
                     <td>{{this.firstName}}&nbsp;{{this.lastName}}</td>
-                    <td>{{this.usbId}}</td>
+                    <td>{{this.bndId}}/{{this.usbId}}</td>
                     <td>{{this.fingerprt}}</td>
                     <td>{{this.deviceId}}</td>
                     <td>{{this.expireDate}}</td>
+                    <td>{{this.addressCity}} {{this.addressState}}
                 </tr>
                 {{/each}}
                 </tbody>
