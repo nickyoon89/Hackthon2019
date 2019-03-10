@@ -16,7 +16,6 @@ var multer = require("multer");
 var bodyParser = require("body-parser");
 var app = express();
 var path = require('path');
-var fs = require('fs');
 var exphbs = require('express-handlebars');
 var dataService = require('./data-service.js');
 
@@ -26,7 +25,6 @@ const storage = multer.diskStorage({
       cb(null, Date.now() + path.extname(file.originalname));
     }
 });
-var upload = multer({ storage: storage });
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -88,7 +86,7 @@ app.get('/departments', (req, res) => {
 //POST
 
 app.post('/login', (req, res) => {
-    req.body.userAgent = req.get('User-Agent');
+    /*req.body.userAgent = req.get('User-Agent');
 
     dataServiceAuth.checkUser(req.body)
     .then((user) => {
@@ -100,7 +98,7 @@ app.post('/login', (req, res) => {
         res.redirect('/employees');
     }).catch((err) => {
         res.render('login', {errorMessage: err, userName: req.body.userName});
-    });
+    });*/
 });
 
 app.get('*', (req, res) => {
