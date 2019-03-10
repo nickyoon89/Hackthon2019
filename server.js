@@ -67,9 +67,7 @@ app.get('/employees', (req, res) => {
 });
 
 app.get('/login', (req, res) => { 
-    dataService.getDepartments()
-        .then((data) => res.render("departments",{departments:data}))
-        .catch(() => res.render("departments",{"message": "no results"}))
+    res.render("employees",{});
 })
 
 app.get("/employees/add", (req, res) => {
@@ -82,24 +80,16 @@ app.get('/departments', (req, res) => {
         .then((data) => res.render("departments",{departments:data}))
         .catch(() => res.render("departments",{"message": "no results"}))
 })
-
 //POST
 
-app.post('/login', (req, res) => {
-    /*req.body.userAgent = req.get('User-Agent');
-
-    dataServiceAuth.checkUser(req.body)
-    .then((user) => {
-        req.session.user = {
-            userName: user.userName,
-            email: user.email,
-            loginHistory: user.loginHistory
-        }
+//add validation for username and password
+app.post("/login", function (req, res) {
+    dataService.checkUser(req.body).then(() => {
         res.redirect('/employees');
-    }).catch((err) => {
-        res.render('login', {errorMessage: err, userName: req.body.userName});
-    });*/
+        })
+    .catch((err) => res.render("addEmployee",{errorMessage: err,userName:req.body.userName}))
 });
+
 
 app.get('*', (req, res) => {
     //res.send("Page Not Found");
