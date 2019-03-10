@@ -53,7 +53,6 @@ exports.updateEmployee = function(employeeData){
         });
     });
 };
-
 //valid accounts
 exports.checkUser = function (userData) {
     let nowDate = new Date().toISOString().
