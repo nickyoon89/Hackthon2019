@@ -63,30 +63,10 @@ app.get("/", (req, res) => {
 });
 
 app.get('/employees', (req, res) => {
-    if(req.query.status) {
-        dataService.getEmployeesByStatus(req.query.status)
-            .then((data) => res.render("employees",{employees:data}))
-            .catch(() => res.render("employees",{message: "no results"}))
-    }else if(req.query.manager){
-        dataService.getEmployeesByManager(req.query.manager)
-            .then((data) => res.render("employees",{employees:data}))
-            .catch(() => res.render("employees",{message: "no results"}))
-    }else if(req.query.department){
-        dataService.getEmployeesByDepartment(req.query.department)
-            .then((data) => res.render("employees",{employees:data}))
-            .catch(() => res.render("employees",{message: "no results"}))
-    }else{
-        dataService.getAllEmployees()
-            .then((data) => res.render("employees",{employees:data}))
-            .catch(() => res.render("employees",{message: "no results"}))
-    }
+    dataService.getAllEmployees()
+        .then((data) => res.render("employees",{employees:data}))
+        .catch(() => res.render("employees",{message: "no results"}))
 });
-
-/*app.get('/managers', (req, res) => {
-    dataService.getManagers()
-        .then((data) => res.json(data))
-        .catch((err) => res.render({"message": err}))
-});*/
 
 app.get('/login', (req, res) => { 
     dataService.getDepartments()
@@ -104,6 +84,24 @@ app.get('/departments', (req, res) => {
         .then((data) => res.render("departments",{departments:data}))
         .catch(() => res.render("departments",{"message": "no results"}))
 })
+
+//POST
+
+app.post('/login', (req, res) => {
+    req.body.userAgent = req.get('User-Agent');
+
+    dataServiceAuth.checkUser(req.body)
+    .then((user) => {
+        req.session.user = {
+            userName: user.userName,
+            email: user.email,
+            loginHistory: user.loginHistory
+        }
+        res.redirect('/employees');
+    }).catch((err) => {
+        res.render('login', {errorMessage: err, userName: req.body.userName});
+    });
+});
 
 app.get('*', (req, res) => {
     //res.send("Page Not Found");
