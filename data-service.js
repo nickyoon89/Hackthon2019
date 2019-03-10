@@ -60,8 +60,15 @@ exports.checkUser = function (userData) {
         if(i.userName===userData.userName){
             if (userData.password != i.password)
                 reject("Incorrect password: " + userData.userName);
-            else
-                resolve(i);
+            else{
+                let exp = new Date(i.expireDate);
+                let today=new Date();
+                if(exp>=today)
+                {resolve(i);}
+                else{
+                    reject("Certificate Expired: " + i.expireDate);
+                }
+            }              
         }
     })    
     reject("Unable to find user: " + userData.userName);
